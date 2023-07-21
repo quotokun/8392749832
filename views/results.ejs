@@ -1,0 +1,19 @@
+<p>Checked <%= totalProxies %> proxies</p>
+<p>Working: <%= workingProxies.length %></p>
+<p>Failed: <%= failedProxies.length %></p>
+
+<h3>Working Proxies</h3>
+<ul>
+<% workingProxies.forEach(proxy => { %>  
+  <li><%= proxy.proxy %> (<%= proxy.speed %> ms)</li>
+<% }) %>
+</ul>
+
+<h3>Failed Proxies</h3>
+<ul>
+<% failedProxies.forEach(proxy => { %>
+  <li><%= proxy %></li>
+<% }) %>
+</ul>
+
+<a href="/">Check more proxies</a>

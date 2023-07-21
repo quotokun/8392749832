@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proxy Checker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<%- include('header') %>
+<!-- <body>
+  <div class="container">
+    <form class="" action="/check" method="post">
+      <div class="form-group">
+        <textarea class="form-control" name="proxies" placeholder="Proxies (one per line, in the format of ip:port:username:password)"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <div id="results">
+      <% if (workingProxies.length > 0) { %>
+        <div class="alert alert-success" role="alert" id="workingProxies">
+          <h3 class="alert-heading">Working Proxies (<%= workingProxies.length %>)</h3>
+          <ul class="list-unstyled">
+            <% workingProxies.forEach(function(p) { %>
+              <li><%= p.proxy %> (<%= p.speed %> ms)</li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <% if (failedProxies.length > 0) { %>
+        <div class="alert alert-danger" role="alert" id="failedProxies">
+          <h3 class="alert-heading">Failed Proxies (<%= failedProxies.length %>)</h3>
+          <ul class="list-unstyled">
+            <% failedProxies.forEach(function(p) { %>
+              <li><%= p %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body> -->
+<body>
+  <div class="container">
+    <form class="" action="/check" method="post">
+      <div class="form-group">
+        <textarea class="form-control" name="proxies" placeholder="Proxies (one per line, in the format of ip:port:username:password)"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <table class="table table-border table-hover">
+      <thead>
+        <tr class="active">
+          <th class="text-center" width="70">Status</th>
+          <th class="text-center">IP:Port</th>
+          <th class="text-center mobile-hide" width="150">Login</th>
+          <th class="text-center mobile-hide" width="150">Password</th>
+          <th class="text-center" width="150">Type</th>
+          <th class="text-center mobile-hide" width="150">Response time</th>
+          <th class="text-center" width="70">Country</th>
+        </tr>
+        <tr>
+          <th colspan="100" class="text-center" id="checker-process" style="display: none;">
+            <span class="chk1">Checking...</span>
+            <span class="chk2">1 / 1</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% workingProxies.forEach(function(p) { %>
+          <tr class="">
+            <td class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-toggle-on" viewBox="0 0 16 16">
+              <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+            </svg></td>
+            <td class="text-center"><%= p.proxy %></td>
+            <% if (p.username) { %>
+              <td class="text-center mobile-hide"><%= p.username %></td>
+            <% } else { %>
+              <td class="text-center mobile-hide">---</td>
+            <% } %>
+            <% if (p.password) { %>
+              <td class="text-center mobile-hide"><%= p.password %></td>
+            <% } else { %>
+              <td class="text-center mobile-hide">---</td>
+            <% } %>
+            <td class="text-center">HTTP(s)</td>
+            <td class="text-center mobile-hide"><%= p.speed %> ms</td>
+            <td class="text-center"><%= p.location %></td>
+          </tr>
+        <% }); %>
+        <% failedProxies.forEach(function(p) { %>
+          <tr class="">
+            <td class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-toggle-off" viewBox="0 0 16 16">
+              <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/>
+            </svg></td>
+            <td class="text-center"><%= p %></td>
+            <td class="text-center mobile-hide">---</td>
+            <td class="text-center mobile-hide">---</td>
+            <td class="text-center">HTTP(s)</td>
+            <td class="text-center mobile-hide">---</td>
+            <td class="text-center">---</td>
+          </tr>
+        <% }); %>
+        <div id="results">
+          <% if (workingProxies.length > 0) { %>
+            <div class="alert alert-success" role="alert" id="workingProxies">
+              <h3 class="alert-heading">Working Proxies (<%= workingProxies.length %>)</h3>
+              <ul class="list-unstyled">
+                <% workingProxies.forEach(function(p) { %>
+                  <li><%= p.proxy %> </li>
+                <% }); %>
+              </ul>
+            </div>
+          <% } %>
+        <% if (failedProxies.length > 0) { %>
+          <div class="alert alert-danger" role="alert" id="failedProxies">
+            <h3 class="alert-heading">Failed Proxies (<%= failedProxies.length %>)</h3>
+            <ul class="list-unstyled">
+              <% failedProxies.forEach(function(p) { %>
+                <li><%= p %></li>
+              <% }); %>
+            </ul>
+          </div>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

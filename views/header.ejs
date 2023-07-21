@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Proxy Checker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/proxies">Saved Proxies</a>    
+      </li>   
+      <li class="nav-item">
+        <a class="nav-link" href="/tools">Tools</a>     
+      </li>                  
+    </ul>
+  </div>
+</nav>
+<!-- <script>
+  alert("All3format!");
+  function validateProxies() {
+    const proxyInput = document.getElementsByName("proxies")[0];
+    const proxies = proxyInput.value.split("\n");
+    const regex = /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d{1,5})(?::([\w-]+))?(?::([\w-]+))?$/;
+    let valid = true;
+    for (const proxy of proxies) {
+      if (!regex.test(proxy.trim())) {
+        alert("Invalid proxy format: " + proxy.trim());
+        proxyInput.focus();
+        valid = false;
+        break;
+      }
+    }
+    if (valid) {
+      alert("All proxies are in the correct format!");
+    }
+    return valid;
+  }
+</script> -->

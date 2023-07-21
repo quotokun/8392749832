@@ -1,0 +1,17 @@
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<%- include('header') %>
+<div class="container">
+      <form class="" action="/check" method="post">
+      <div class="form-group" style="text-align:center;">
+        <textarea class="form-control" name="proxies" placeholder="Proxies (one per line, in the format of ip:port:username:password)"></textarea>
+        </div>
+        <button class="btn btn-primary type="submit">Submit</button>
+      </form>
+      <div class="loading" style="display: none;">
+        <span class="spinner-border spinner-border-sm"></span>
+        Checking proxies...
+      </div>
+      <div id="results"></div>
+      </div>
